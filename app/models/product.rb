@@ -12,4 +12,9 @@
 #
 
 class Product < ApplicationRecord
+    BARGAIN_TYPE = %i(Percent Values)
+    
+    enum bargain_type: BARGAIN_TYPE
+    
+    validates :bargain_type, { in: BARGAIN_TYPE }
 end
