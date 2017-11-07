@@ -50,7 +50,7 @@ group :development, :test do
   gem 'faker'
   gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'factory_girl_rails'
+  gem 'factory_bot'
   gem 'rspec-rails'
 end
 

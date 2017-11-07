@@ -27,5 +27,13 @@ module PechincheBackend
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    
+    # RackCors Config
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :delete, :put, :patch]
+      end
+    end
   end
 end

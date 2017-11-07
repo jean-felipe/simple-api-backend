@@ -11,11 +11,12 @@
 #  updated_at  :datetime         not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :product do
-    title "MyString"
-    description "MyText"
-    price "9.99"
-    max_bargain 1
+    title Faker::OnePiece.akuma_no_mi
+    description Faker::Lorem.sentence
+    price  Faker::Number.decimal(2)
+    max_bargain Faker::Number.between(1, 10)
+    bargain_type Faker::Number.between(1, 2)
   end
 end
