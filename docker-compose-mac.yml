@@ -1,0 +1,13 @@
+version: "2"
+volumes:
+  web-sync:
+    external: true
+services:
+  web:
+    volumes:
+      - web-sync:/simple-api-backend:nocopy # https://github.com/EugenMayer/docker-sync/wiki/2.-Configuration#why-nocopy-is-important
+      - ./db:/simple-api-backend/db
+      - ./bin:/simple-api-backend/bin
+      - ./config/initializers:/simple-api-backend/config/initializers
+      - ./public/assets/uploads:/simple-api-backend/public/assets/uploads
+      - ./app/models:/simple-api-backend/app/models # annotate models after migrations

@@ -1,0 +1,47 @@
+# https://github.com/EugenMayer/docker-sync/wiki/2.-Configuration
+version: "2"
+options:
+  compose-file-path: 'docker-compose.yml'
+  compose-dev-file-path: 'docker-compose-mac.yml'
+  verbose: false
+  cli_mode: 'auto'
+
+syncs:
+  web-sync:
+    # enable terminal_notifier. On every sync sends a Terminal Notification regarding files being synced. ( Mac Only ).
+    # good thing in case you are developing and want to know exactly when your changes took effect.
+    # be aware in case of unison this only gives you a notification on the initial sync, not the syncs after changes.
+    # notify_terminal: true
+
+    # https://github.com/EugenMayer/docker-sync/wiki/1.2-Upgrade-Guide#rsync-trailing-slash-changes
+    src: './'
+
+    # requires Docker for Mac CE 17.06.0+
+    # https://github.com/docker/docker.github.io/blob/master/docker-for-mac/release-notes.md#docker-community-edition-17060-ce-mac18-2017-06-28-stable
+    host_disk_mount_mode: 'cached'
+
+    # https://github.com/EugenMayer/docker-sync/pull/134 - do no longer use localhost, use 127.0.0.1 instead
+    sync_host_ip: '127.0.0.1'
+    sync_host_port: 10871
+
+    # https://github.com/EugenMayer/docker-sync/issues/68
+    sync_excludes: ['.env', 'tmp/', 'db/', 'public/assets/', 'node_modules/', '.gitignore', '.git/']
+    sync_excludes_type: 'Path'
+
+    # unison is the default in docker-sync 0.20
+    sync_strategy: 'rsync'
+
+    # defines how sync-conflicts should be handled (UNISON only). With default it will prefer the source with --copyonconflict
+    # so on conflict, pick the one from the host and copy the conflicted file for backup
+    # sync_prefer: 'default'
+
+    # optional: enable fswatch in the container side (UNISON only) to automatically retrieve files created in the container to the host
+    # watch_in_container: true
+
+    watch_excludes: ['.*/tmp', './db', './public/assets', '.*/node_modules', '.gitignore', '.*/.git']
+
+    # optional: use this to switch to fswatch verbose mode
+    # watch_args: '-v'
+
+    # optional: default is fswatch, if set to disable, no watcher will be used and you would need to start the sync manually
+    watch_strategy: 'fswatch'
