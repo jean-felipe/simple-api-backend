@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20171106185527) do
     t.text "description"
     t.decimal "price"
     t.integer "max_bargain"
+    t.integer "bargain_type", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -34,7 +34,7 @@ gem 'annotate'
 gem 'devise'
 gem 'rack-cors'
 gem 'table_print'
-gem 'jsonapi-utils'
+gem 'jsonapi-utils', '~> 0.7.0'
 
 gem 'uuid'
 gem 'better_errors'
@@ -47,7 +47,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-collection_matchers'
   gem 'airborne' # RSpec driven API testing framework
-  gem 'faker'
+  gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'factory_bot'
