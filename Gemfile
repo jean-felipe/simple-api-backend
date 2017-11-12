@@ -50,7 +50,7 @@ group :development, :test do
   gem 'faker', :git => 'git://github.com/stympy/faker.git', :branch => 'master'
   gem 'capybara'
   gem 'selenium-webdriver'
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'rspec-rails'
 end
 
